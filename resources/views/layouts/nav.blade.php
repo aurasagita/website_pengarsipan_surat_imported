@@ -3,6 +3,12 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
+    <div class="container">
+
+        <a class="navbar-brand text-primary font-weight-bold text-uppercase" href="{{ url('/') }}">
+        <img src="https://siakad.polinema.ac.id/assets/global/img/logo-polinema.png" alt="Polinema Logo" class="img-fluid mx-auto d-block" width="50" height="50">
+        </a>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Left Side Of Navbar -->
         <ul class="navbar-nav mr-auto">

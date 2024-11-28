@@ -68,7 +68,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($arsips as $arsip)
+                        @forelse($arsips as $index => $arsip)
                         <tr>
                             <td>{{ $arsip->id ?? '-' }}</td>
                             <td>{{ $arsip->nomor_surat ?? '-' }}</td>
