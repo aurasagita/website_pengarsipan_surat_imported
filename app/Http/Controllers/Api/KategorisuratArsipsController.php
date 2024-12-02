@@ -7,6 +7,7 @@ use App\Models\Kategorisurat;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ArsipResource;
 use App\Http\Resources\ArsipCollection;
+use App\Models\Arsip;
 
 class KategorisuratArsipsController extends Controller
 {
