@@ -24,7 +24,7 @@ class UserStoreRequest extends FormRequest
             'id' => ['required', 'max:255'],
             'name' => ['required', 'max:255', 'string'],
             'foto' => ['image', 'max:1024', 'nullable'],
-            'nim' => ['nullable', 'numeric'],
+            'nim' => ['nullable', 'max:255', 'string'],
             'Prodi' => ['nullable', 'max:255', 'string'],
             'email' => ['required', 'unique:users,email', 'email'],
             'tanggal' => ['nullable', 'date'],

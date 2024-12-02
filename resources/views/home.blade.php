@@ -62,7 +62,7 @@
                                             @else
                                             <div class="small-box bg-info">
                                                 <div class="inner">
-                                                    {{-- <h3>{{ $countArsips }}</h3> --}}
+                                                    <h3>{{ $countArsip }}</h3>
                                                     <p>Arsip Surat</p>
                                                 </div>
                                                 <div class="icon d-flex align-items-center justify-content-center">
@@ -86,6 +86,21 @@
                                                 <a href="{{ url('/kategorisurats') }}" class="small-box-footer">More info <i class="nav-icon icon ion-md-arrow-forward" style="font-size: 1.5rem;"></i></a>
                                             </div>
                                         </div>
+                                        <!-- ./col -->
+                                        <div class="col-lg-4 col-6">
+                                            <!-- small box -->
+                                            <div class="small-box bg-danger">
+                                                <div class="inner">
+                                                    <h3>{{ $countArsip }}</h3>
+                                                    <p>Arsip Surat</p>
+                                                </div>
+                                                <div class="icon d-flex align-items-center justify-content-center">
+                                                    <i class="nav-icon icon ion-md-document" style="font-size: 2.5rem;"></i>
+                                                </div>
+                                                <a href="{{ url('/arsips') }}" class="small-box-footer">More info <i class="nav-icon icon ion-md-arrow-forward" style="font-size: 1.5rem;"></i></a>
+                                            </div>
+                                        </div>
+                                        <!-- ./col -->
                             </div>
                                      <!-- Table Section for Form Pemeliharaan -->
                                      <div class="card">
@@ -120,26 +135,38 @@
                                                             <th class="text-left">
                                                                 @lang('crud.arsips.inputs.waktu_pengarsipan')
                                                             </th>
-                                                            <th class="text-center">
-                                                                @lang('crud.common.actions')
-                                                            </th>
                                                         </tr>
 
                                                     </thead>
                                                     <tbody>
-                                                        @forelse ($pemeliharaans as $index => $pemeliharaan)
-                                                            <tr>
-                                                                <td>{{ $index + 1 }}</td>
-                                                                <td>{{ $pemeliharaan->tanggal ?? '-' }}</td>
-                                                                <td>{{ $pemeliharaan->periode ?? '-' }}</td>
-                                                                <td>{{ $pemeliharaan->cuaca ?? '-' }}</td>
-                                                                <td>{{ $pemeliharaan->user->name ?? '-' }}</td>
-                                                                <td>{{ $pemeliharaan->alatTelemetri->lokasiStasiun ?? '-' }}</td>
-                                                            </tr>
+                                                        @forelse($arsips as $arsip)
+                                                        <tr>
+                                                            <td>{{ $arsip->id ?? '-' }}</td>
+                                                            <td>{{ $arsip->nomor_surat ?? '-' }}</td>
+                                                            <td>{{ $arsip->judul ?? '-' }}</td>
+                                                            <td>
+                                                                {{
+                                                                optional($arsip->kategorisurat)->nama_kategori
+                                                                ?? '-' }}
+                                                            </td>
+                                                            <td>
+                                                                @if($arsip->flie_path)
+                                                                <a
+                                                                    href="{{ \Storage::url($arsip->flie_path) }}"
+                                                                    target="blank"
+                                                                    ><i class="icon ion-md-download"></i
+                                                                    >&nbsp;Download</a
+                                                                >
+                                                                @else - @endif
+                                                            </td>
+                                                            <td>{{ $arsip->waktu_pengarsipan ?? '-' }}</td>
+                                                        </tr>
                                                         @empty
-                                                            <tr>
-                                                                <td colspan="9" class="text-center">No data available</td>
-                                                            </tr>
+                                                        <tr>
+                                                            <td colspan="7">
+                                                                @lang('crud.common.no_items_found')
+                                                            </td>
+                                                        </tr>
                                                         @endforelse
                                                     </tbody>
                                                 </table>

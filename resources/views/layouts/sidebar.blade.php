@@ -2,8 +2,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link">
-        <img src="https://vemto.app/favicon.png" alt="Vemto Logo" class="brand-image bg-white img-circle">
-        <span class="brand-text font-weight-light">website pengarsipan surat [Imported]</span>
+        <img src="https://siakad.polinema.ac.id/assets/global/img/logo-polinema.png" alt="Polinema Logo" class="brand-image bg-white img-circle">
+        <h5><span class="brand-text font-weight-light">pengarsipan surat</span></h5>
     </a>
 
     <!-- Sidebar -->
@@ -22,12 +22,12 @@
                         </p>
                     </a>
                 </li>
-
                 <li class="nav-item">
+                    @can('view-any', App\Models\User::class)
                     <a href="#" class="nav-link">
-                        <i class="nav-icon icon ion-md-apps"></i>
+                        <i class="nav-icon icon ion-md-menu"></i>
                         <p>
-                            Apps
+                            Pengarsipan
                             <i class="nav-icon right icon ion-md-arrow-round-back"></i>
                         </p>
                     </a>
@@ -35,38 +35,32 @@
                             @can('view-any', App\Models\User::class)
                             <li class="nav-item">
                                 <a href="{{ route('users.index') }}" class="nav-link">
-                                    <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Users</p>
+                                    <i class="nav-icon icon ion-md-people"></i>
+                                    <p>User Management</p>
                                 </a>
                             </li>
                             @endcan
                             @can('view-any', App\Models\Kategorisurat::class)
                             <li class="nav-item">
                                 <a href="{{ route('kategorisurats.index') }}" class="nav-link">
-                                    <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Kategorisurats</p>
+                                    <i class="nav-icon icon ion-md-search"></i>
+                                    <p>Kategori Surat</p>
                                 </a>
                             </li>
                             @endcan
                             @can('view-any', App\Models\Arsip::class)
                             <li class="nav-item">
                                 <a href="{{ route('arsips.index') }}" class="nav-link">
-                                    <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Arsips</p>
+                                    <i class="nav-icon icon ion-md-cog"></i>
+                                    <p>Arsip Surat</p>
                                 </a>
                             </li>
                             @endcan
                     </ul>
+                    @endcan
                 </li>
-
                 @endauth
 
-                <li class="nav-item">
-                    <a href="https://adminlte.io/docs/3.1//index.html" target="_blank" class="nav-link">
-                        <i class="nav-icon icon ion-md-help-circle-outline"></i>
-                        <p>Docs</p>
-                    </a>
-                </li>
 
                 @auth
                 <li class="nav-item">

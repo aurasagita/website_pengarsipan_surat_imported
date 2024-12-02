@@ -31,6 +31,9 @@
                         '-' }}</span
                     >
                 </div>
+                <div>
+                    <embed src="{{\Storage::url($arsip->flie_path)}}" type="application/pdf" width="100%" height="600px">
+                </div>
                 <div class="mb-4">
                     <h5>@lang('crud.arsips.inputs.flie_path')</h5>
                     @if($arsip->flie_path)
