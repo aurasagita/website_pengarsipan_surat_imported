@@ -50,7 +50,7 @@
                             @endcan
                             @can('view-any', App\Models\Arsip::class)
                             <li class="nav-item">
-                                <a href="{{ route('kategorisurats.index') }}" class="nav-link">
+                                <a href="{{ route('arsips.index') }}" class="nav-link">
                                     <i class="nav-icon icon ion-md-cog"></i>
                                     <p>Arsip Surat</p>
                                 </a>
