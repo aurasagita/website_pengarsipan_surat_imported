@@ -30,6 +30,16 @@ class ArsipController extends Controller
         return view('app.arsips.index', compact('arsips', 'search'));
     }
 
+    public function rules(): array
+    {
+        return [
+            'nomor_surat' => ['required', 'string', 'max:255'],
+            'judul' => ['required', 'string', 'max:255'],
+            'kategorisurat_id' => ['required', 'exists:kategorisurats,id'],
+            'flie_path' => ['required', 'file', 'mimes:pdf,doc,docx', 'max:2048'], // File maksimal 2MB
+        ];
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -53,14 +63,14 @@ class ArsipController extends Controller
         if ($request->hasFile('flie_path')) {
             $validated['flie_path'] = $request
                 ->file('flie_path')
-                ->store('public');
+                ->store('public/arsips');
         }
 
         $arsip = Arsip::create($validated);
 
         return redirect()
             ->route('arsips.edit', $arsip)
-            ->withSuccess(__('crud.common.created'));
+            ->with('success', 'Arsip Berhasil Ditambahkan');
     }
 
     /**
@@ -102,14 +112,14 @@ class ArsipController extends Controller
 
             $validated['flie_path'] = $request
                 ->file('flie_path')
-                ->store('public');
+                ->store('public/arsips');
         }
 
         $arsip->update($validated);
 
         return redirect()
             ->route('arsips.edit', $arsip)
-            ->withSuccess(__('crud.common.saved'));
+            ->with('success', 'Arsip Berhasil DiUpdate');
     }
 
     /**
@@ -127,6 +137,6 @@ class ArsipController extends Controller
 
         return redirect()
             ->route('arsips.index')
-            ->withSuccess(__('crud.common.removed'));
+            ->with('success', 'Arsip Berhasil Dihapus');
     }
 }
